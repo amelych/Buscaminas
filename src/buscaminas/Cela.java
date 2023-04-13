@@ -12,13 +12,13 @@ public class Cela {
     private int columna;
 
     /**
-     * O constructor de Cela nos da toda a información sobre cada cela do
+     * El constructor de la Cela nos da toda la información sobre cada cela del
      * programa
      *
-     * @estado int que indica o estado da cela. Tapada(1), marcada(2), destapada(3)
-     * @param fila número da fila na que está colocada a cela.
-     * @param columna número da columna na que está colocada a cela.
-     * @minada un booleano que indica se a cela ten una mina ou non
+     * @estado int que indica el estado de la cela. Tapada(1), marcada(2), destapada(3)
+     * @param fila número de la fila en la que está colocada la cela.
+     * @param columna número de la columna en la que está colocada la cela.
+     * @param minada un booleano que indica si la cela tiene una mina o no
      */
     public Cela(int fila, int columna, boolean minada) {
         this.estado = 1;
@@ -57,6 +57,24 @@ public class Cela {
 
     public void setColumna(int columna) {
         this.columna = columna;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Cela other = (Cela) obj;
+        if (this.fila != other.fila) {
+            return false;
+        }
+        return this.columna == other.columna;
     }
    
 }

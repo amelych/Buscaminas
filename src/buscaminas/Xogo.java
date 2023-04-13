@@ -65,28 +65,19 @@ public class Xogo {
         for (int i = 0; i < celas.length; i++) {
             System.out.print(i + "\t");
             for (int j = 0; j < celas[i].length; j++) {
-                if (celas[i][j].getEstado() == 1) {
-                    System.out.print("[" + "-" + "]");
-                } else if (celas[i][j].getEstado() == 2) {
-                    System.out.print("[" + "!" + "]");
-                } else if (celas[i][j].getEstado() == 3) {
-                    if (celas[i][j].isMinada() == true) {
-                        System.out.print("[" + "*" + "]");
-                    } else {
-                        axudaUsuario(celas[i][j]);
+                switch (celas[i][j].getEstado()) {
+                    case 1 -> System.out.print("[" + "-" + "]");
+                    case 2 -> System.out.print("[" + "!" + "]");
+                    case 3 -> {
+                        if (celas[i][j].isMinada() == true) {
+                            System.out.print("[" + "*" + "]");
+                        } else {
+                            axudaUsuario(celas[i][j]);
+                        }
+                    }
+                    default -> {
                     }
                 }
-            }
-            System.out.println();
-        }
-        for (int i = 0; i < celas.length; i++) {
-            System.out.print("\t" + i + " ");
-        }
-        System.out.println();
-        for (int i = 0; i < celas.length; i++) {
-            System.out.print(i + "\t");
-            for (int j = 0; j < celas[i].length; j++) {
-                System.out.print("[" + celas[i][j].isMinada() + "]");
             }
             System.out.println();
         }
@@ -123,44 +114,10 @@ public class Xogo {
         celasAdxacentes = new ArrayList<>();
         int fila = cela.getFila();
         int columna = cela.getColumna();
-        for (int i = 0; i < celas.length; i++) {
-            for (int j = 0; j < celas[i].length; j++) {
-                if (fila == 0 || fila == celas.length - 1 || columna == 0 || columna == celas[i].length - 1) {
-                    if (fila == 0 && columna == 0) {
-                        celasAdxacentes.add(celas[fila + 1][columna]);
-                        celasAdxacentes.add(celas[fila + 1][columna + 1]);
-                        celasAdxacentes.add(celas[fila][columna + 1]);
-                    } else if (fila == 0 && columna == celas[i].length - 1) {
-                        celasAdxacentes.add(celas[fila][columna - 1]);
-                        celasAdxacentes.add(celas[fila + 1][columna - 1]);
-                        celasAdxacentes.add(celas[fila + 1][columna]);
-                    }
-                    if (fila == celas.length - 1 && columna == 0) {
-                        celasAdxacentes.add(celas[fila][columna + 1]);
-                        celasAdxacentes.add(celas[fila - 1][columna + 1]);
-                        celasAdxacentes.add(celas[fila - 1][columna]);
-                    } else if (fila == celas.length - 1 && columna == celas[i].length - 1) {
-                        celasAdxacentes.add(celas[fila][columna - 1]);
-                        celasAdxacentes.add(celas[fila - 1][columna - 1]);
-                        celasAdxacentes.add(celas[fila - 1][columna]);
-                    }
-
-                } else {
-                    if (celas[i][j] == celas[fila][columna - 1]) {
-                        celasAdxacentes.add(celas[i][j]);
-                    } else if (celas[i][j] == celas[fila][columna + 1]) {
-                        celasAdxacentes.add(celas[i][j]);
-                    } else if (celas[i][j] == celas[fila - 1][columna]) {
-                        celasAdxacentes.add(celas[i][j]);
-                    } else if (celas[i][j] == celas[fila + 1][columna]) {
-                        celasAdxacentes.add(celas[i][j]);
-                    } else if (celas[i][j] == celas[fila - 1][columna - 1]) {
-                        celasAdxacentes.add(celas[i][j]);
-                    } else if (celas[i][j] == celas[fila - 1][columna + 1]) {
-                        celasAdxacentes.add(celas[i][j]);
-                    } else if (celas[i][j] == celas[fila + 1][columna - 1]) {
-                        celasAdxacentes.add(celas[i][j]);
-                    } else if (celas[i][j] == celas[fila + 1][columna + 1]) {
+        for (int i = fila - 1; i <= fila + 1; i++) {
+            if (i >= 0 && i < celas.length) {
+                for (int j = columna - 1; j <= columna + 1; j++) {
+                    if (j >= 0 && j < celas[i].length && !celas[i][j].equals(cela)) {
                         celasAdxacentes.add(celas[i][j]);
                     }
                 }
@@ -171,8 +128,8 @@ public class Xogo {
 
     public int getMinasAdxacentes(Cela cela) {
         int mina = 0;
-        for (int i = 0; i < getCelasAdxacentes(cela).size(); i++) {
-            if (getCelasAdxacentes(cela).get(i).isMinada() == true) {
+        for (Cela celaAdxacente: getCelasAdxacentes(cela)) {
+            if (celaAdxacente.isMinada()) {
                 mina++;
             }
         }

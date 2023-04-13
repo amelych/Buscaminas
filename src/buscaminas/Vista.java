@@ -22,10 +22,11 @@ public class Vista {
 
 
     public void mostrarMenu() {
-        System.out.println("-----------------Menu-----------------");
+        System.out.println("--------------------Menu--------------------");
         System.out.println("1. Escolle a cela a destapar (fila e columna)");
         System.out.println("2. Marcar unha cela.");
         System.out.println("3. salir");
+        System.out.println("--------------------------------------------");
     }
 
     public void partidaGanada() {
@@ -38,5 +39,17 @@ public class Vista {
 
     public void celaDestapada() {
         System.out.println(RED + "A cela xa estaba destapada" + RESET);
+    }
+    
+    public void arrayExcepcion() {
+        System.out.println(RED + "El número introducido no se encuentra dentro del array" + RESET);
+    }
+    
+    public void excepcionMadre() {
+        System.out.println(RED + "Ocurrió algún otro error" + RESET);
+    }
+    
+    public void noInteger() {
+        System.out.println(RED + "El elemento introducido no es un integer" + RESET);
     }
 }
