@@ -14,9 +14,10 @@ public class Buscaminas {
      */
     public static void main(String[] args) {
         Scanner teclado = new Scanner(System.in, "ISO-8859-1");
-        Xogo x = new Xogo(10, 10, 10);
+        Xogo x = new Xogo(8, 8, 10);
         Vista vista = new Vista();
-        boolean continuar = x.isVivo();
+        
+        boolean continuar = true;
         int eleccion = 0;
         int fila = 0;
         int columna = 0;
@@ -33,9 +34,7 @@ public class Buscaminas {
                         System.out.println("Escribe a columna: ");
                         columna = teclado.nextInt();
                         x.abrirCela(x.getCela(fila, columna));
-                        if (x.getCela(fila, columna).isMinada()) {
-                            continuar = x.isVivo();
-                        } else if (x.comprobarCelasAbrir() == true) {
+                         if (x.comprobarCelasAbrir() == true) {
                             x.imprimirPanel();
                             x.juegoGanado();
                             continuar = false;
@@ -62,6 +61,6 @@ public class Buscaminas {
                 vista.excepcionMadre();
                 teclado.nextLine();
             }
-        } while (continuar);
+        } while (x.isVivo() && continuar);
     }
 }

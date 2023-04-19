@@ -70,7 +70,7 @@ public class Xogo {
                     case 2 -> System.out.print("[" + "!" + "]");
                     case 3 -> {
                         if (celas[i][j].isMinada() == true) {
-                            System.out.print("[" + "*" + "]");
+                            System.out.print(vista.BLACK_ON_RED + "[" + "*" +"]" + vista.RESET);
                         } else {
                             axudaUsuario(celas[i][j]);
                         }
@@ -100,7 +100,7 @@ public class Xogo {
             case 7 ->
                 System.out.println("[" + vista.BLACK + "7" + vista.RESET + "]");
             case 8 ->
-                System.out.println("[" + vista.BLACK_ON_RED + "8" + vista.RESET + "]");
+                System.out.println("[" + vista.RED + "8" + vista.RESET + "]");
             default ->
                 System.out.print("[" + " " + "]");
         }
@@ -199,6 +199,15 @@ public class Xogo {
     }
 
     public void juegoGanado() {
+        for (int i = 0; i < celas.length; i++) {
+            for (int j = 0; j < celas[i].length; j++) {
+                if (celas[i][j].isMinada() == true && celas[i][j].getEstado() == 1) {
+                    celas[i][j].setEstado(2);
+                }
+            }
+        }
+        vista.mostrarMenu();
+        imprimirPanel();
         vista.partidaGanada();
     }
 }

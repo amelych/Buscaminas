@@ -13,12 +13,12 @@ public class Vista {
     public static final String RESET = "\u001B[0m"; // reset de colores
     public static final String BLUE = "\u001B[34m"; // para 1
     public static final String GREEN = "\u001B[32m"; // para 2
-    public static final String RED = "\u001B[31m"; // para 3
+    public static final String RED = "\u001B[31m"; // para 3 y 8
     public static final String PURPLE = "\u001B[35m"; // para 4
     public static final String YELLOW = "\u001B[33m"; // para 5
     public static final String CYAN = "\u001B[36m"; // para 6
     public static final String BLACK = "\u001B[30m"; // para 7
-    public static final String BLACK_ON_RED = "\u001B[41m"; // para 8
+    public static final String BLACK_ON_RED = "\u001B[41m"; // para las minas
 
 
     public void mostrarMenu() {
