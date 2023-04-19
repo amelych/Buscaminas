@@ -142,6 +142,8 @@ public class Xogo {
             vista.partidaPerdida();
             abrirTodasMinas();
             imprimirPanel();
+        } else if (celas[cela.getFila()][cela.getColumna()].getEstado() == 3) {
+            vista.celaDestapada();
         } else {
             cela.setEstado(3);
             if (getMinasAdxacentes(cela) == 0) {
